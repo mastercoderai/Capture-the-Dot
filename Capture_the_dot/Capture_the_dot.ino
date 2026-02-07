@@ -6,7 +6,10 @@
 #include<U8g2lib.h>
 #include<Wire.h>
 
-U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE);
+/*In the U8g2 library, SSD1306 display drivers are used to communicate with SSD1315-based OLED display. There is no dedicated SSD1315 
+driver for SSD1315-OLED displays in U8g2 library. But it works absolutely fine.*/
+
+U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE); 
 
 /*This pins are corresponded to a ESP-32. You can choose any compatable pins as per your choise.
  # For connecting the 4 Pin OLED to a arduino Arduino:
