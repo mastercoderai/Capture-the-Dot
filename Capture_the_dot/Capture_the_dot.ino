@@ -8,12 +8,22 @@
 
 U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE);
 
-const int y_up = 34;
-const int y_down = 33;
-const int x_left = 32;
-const int x_right = 35; 
-const int BUZZER_PIN = 19;
-const int LED = 25;
+/*This pins are corresponded to a ESP-32. You can choose any compatable pins as per your choise.
+ # For connecting the 4 Pin OLED to a arduino Arduino:
+ SCK : A5
+ SDA : A4 
+ # For connecting the 4 Pin OLED display to a ESP-32:
+ SCK/SCL : GPIO 22 
+ SDA : GPIO 21 
+ 
+ */
+
+const int y_up = 34; //Forward_Button.
+const int y_down = 33; //Backward_Button.
+const int x_left = 32; //Left_Button.
+const int x_right = 35; //Right_Button.
+const int BUZZER_PIN = 19; //Can be avoided using as per requirment.
+const int LED = 25; //Can be avoided using as per requirment.
 int x_pos = 0;
 int y_pos = 11;
 
@@ -36,13 +46,13 @@ void setup() {
   y_random = random(11,54);
 }
 
-void playBuzzerSound() {
+void playBuzzerSound() {   //Remove this function if not using a Buzzer.
   digitalWrite(BUZZER_PIN, HIGH);
   delay(50);
   digitalWrite(BUZZER_PIN, LOW);
 }
 
-void flashLED() {
+void flashLED() { //Remove this function if not using a LED.
   digitalWrite(LED, HIGH);
   delay(50);
   digitalWrite(LED, LOW);
@@ -85,7 +95,7 @@ void loop() {
   //Creat Horizontle Line
   u8g2.drawHLine(0, 11, 128);
 
-  //Creat  square
+  //Creat controlling square
   u8g2.drawBox(x_random, y_random, 5, 5);
 
   // Creat Dots
@@ -99,12 +109,13 @@ void loop() {
     x_random = random(0,118);
     y_random = random(11, 54);
     point += 10;
-    playBuzzerSound();
-    flashLED();
+    playBuzzerSound(); //Remove if not using a Buzzer.
+    flashLED(); // Remove if not using a LED.
 
   }
 
 
   u8g2.sendBuffer();
-  delay(10);
+  delay(10); /* Change "10" if you want to change the speed of the dot(you control)
+                less "value" == More speed */
 }
