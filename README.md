@@ -11,7 +11,7 @@ This is a simple capture the dot video game that is made using oled display and 
 
  
 # Libraries required:
- -u8g2 library (by oliver)
+ -U8g2 library (by oliver)
 
 That's it! All the Best.
  
